@@ -12,6 +12,8 @@ import be.wimbervoets.microwaveoven.controller.door.Door
 import be.wimbervoets.microwaveoven.controller.door.IDoor
 import be.wimbervoets.microwaveoven.controller.heater.Heater
 import be.wimbervoets.microwaveoven.controller.heater.IHeater
+import be.wimbervoets.microwaveoven.controller.light.ILightBulb
+import be.wimbervoets.microwaveoven.controller.light.LEDLightBulb
 import be.wimbervoets.microwaveoven.ui.MicrowaveUI
 import be.wimbervoets.microwaveoven.ui.theme.MicrowaveOvenAppTheme
 
@@ -21,7 +23,8 @@ class MainActivity : ComponentActivity() {
 
         val door: IDoor = Door()
         val heater: IHeater = Heater()
-        val microwave: IMicrowave = DFSMicrowave(door, heater)
+        val lightBulb: ILightBulb = LEDLightBulb()
+        val microwave: IMicrowave = DFSMicrowave(door, heater, lightBulb)
 
         setContent {
             MicrowaveOvenAppTheme {

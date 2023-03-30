@@ -9,10 +9,11 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import be.wimbervoets.microwaveoven.R
-import be.wimbervoets.microwaveoven.controller.light.LightBulb
+import be.wimbervoets.microwaveoven.controller.light.ILightBulb
+import be.wimbervoets.microwaveoven.controller.light.LEDLightBulb
 
 @Composable
-fun LightBulbUI(lightBulb: LightBulb, modifier: Modifier = Modifier) {
+fun LightBulbUI(lightBulb: ILightBulb, modifier: Modifier = Modifier) {
     val lightBulbState = lightBulb.lightBulbState.collectAsState(initial = false)
     Image(  painter = painterResource(id = R.drawable.ic_lightbulb),
             contentDescription = "Light bulb",
@@ -24,14 +25,14 @@ fun LightBulbUI(lightBulb: LightBulb, modifier: Modifier = Modifier) {
 @Preview
 @Composable
 fun LightBulbOffPreview() {
-    val lightBulb = LightBulb()
+    val lightBulb = LEDLightBulb()
     LightBulbUI(lightBulb)
 }
 
 @Preview
 @Composable
 fun LightBulbOnPreview() { // looks like preview in Android studio is incorrect but ok when preview is run on device
-    val lightBulb = LightBulb()
+    val lightBulb = LEDLightBulb()
     lightBulb.turnLightOn()
     LightBulbUI(lightBulb)
 }

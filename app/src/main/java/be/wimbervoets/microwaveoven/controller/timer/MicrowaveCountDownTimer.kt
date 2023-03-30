@@ -8,18 +8,18 @@ import kotlin.time.Duration
 
 class MicrowaveCountDownTimer(
     private val onFinished: () -> Unit
-) {
+): ICountDownTimer {
 
     private val _countDownInSeconds = MutableStateFlow(0) // Initial state is 0 seconds
-    val countDownInSeconds: StateFlow<Int> = _countDownInSeconds // TODO put in interface ICountDownTimer, IMicrowave
+    override val countDownInSeconds: StateFlow<Int> = _countDownInSeconds
 
     private var timer: Timer? = null
 
-    fun startCountDownTimer() {
+    override fun startCountDownTimer() {
         require(timer == null) { "Can only schedule one timer concurrently, call stopCountDownTimer first" }
         timer = timer("Countdown timer", false, period = 1000) {
             if (_countDownInSeconds.value > 0) {
-                _countDownInSeconds.tryEmit(_countDownInSeconds.value - 1) // TODO : tryEmit ?
+                _countDownInSeconds.tryEmit(_countDownInSeconds.value - 1)
             } else {
                 cancel() // cancel the timer when we went to zero
                 onFinished.invoke()
@@ -27,12 +27,12 @@ class MicrowaveCountDownTimer(
         }
     }
 
-    fun stopCountDownTimer() {
+    override fun stopCountDownTimer() {
         timer?.cancel()
         timer = null
     }
 
-    fun incrementCountDownTimerDuration(duration: Duration) {
+    override fun incrementCountDownTimerDuration(duration: Duration) {
         _countDownInSeconds.value = (_countDownInSeconds.value + duration.inWholeSeconds).toInt()
     }
 

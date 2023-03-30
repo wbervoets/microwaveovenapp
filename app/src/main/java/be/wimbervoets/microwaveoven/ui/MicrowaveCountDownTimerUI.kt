@@ -12,10 +12,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import be.wimbervoets.microwaveoven.controller.timer.ICountDownTimer
 import be.wimbervoets.microwaveoven.controller.timer.MicrowaveCountDownTimer
 
 @Composable
-fun MicrowaveCountDownTimerUI(timer: MicrowaveCountDownTimer, modifier: Modifier = Modifier) {
+fun MicrowaveCountDownTimerUI(timer: ICountDownTimer, modifier: Modifier = Modifier) {
     val state: State<Int> = timer.countDownInSeconds.collectAsState()
     Text(
         text = "${state.value} sec",

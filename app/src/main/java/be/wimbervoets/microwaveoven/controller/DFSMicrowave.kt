@@ -3,20 +3,21 @@ package be.wimbervoets.microwaveoven.controller
 import be.wimbervoets.microwaveoven.controller.door.DoorState
 import be.wimbervoets.microwaveoven.controller.door.IDoor
 import be.wimbervoets.microwaveoven.controller.heater.IHeater
-import be.wimbervoets.microwaveoven.controller.light.LightBulb
+import be.wimbervoets.microwaveoven.controller.light.ILightBulb
 import be.wimbervoets.microwaveoven.controller.timer.MicrowaveCountDownTimer
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import timber.log.Timber
+import kotlin.time.Duration
 import kotlin.time.Duration.Companion.minutes
 
 // allows constructing DFS Microwave with any door and heater implementing the IDoor, IHeater interfaces
 class DFSMicrowave(
     override val door: IDoor,
-    override val heater: IHeater): IMicrowave {
+    override val heater: IHeater,
+    override val lightBulb: ILightBulb): IMicrowave {
 
-    override val lightBulb = LightBulb() // TODO ILightBulb and LEDLightBulb
     override val countDownTimer = MicrowaveCountDownTimer(onFinished = {
         // When timer went to zero...
         heater.turnOffHeater()
@@ -43,6 +44,29 @@ class DFSMicrowave(
     override fun turnOffHeater() = heater.turnOffHeater()
     override fun isHeating(): Boolean = heater.isHeating()
     override val isHeating: StateFlow<Boolean> = heater.isHeating
+    override val lightBulbState: SharedFlow<Boolean> = lightBulb.lightBulbState
+
+    override fun turnLightOn() {
+        lightBulb.turnLightOn()
+    }
+
+    override fun turnLightOff() {
+        lightBulb.turnLightOff()
+    }
+
+    override fun startCountDownTimer() {
+        countDownTimer.startCountDownTimer()
+    }
+
+    override fun stopCountDownTimer() {
+        countDownTimer.stopCountDownTimer()
+    }
+
+    override fun incrementCountDownTimerDuration(duration: Duration) {
+        countDownTimer.incrementCountDownTimerDuration(duration)
+    }
+
+    override val countDownInSeconds: StateFlow<Int> = countDownTimer.countDownInSeconds
 
     override fun pressStartButton() {
         _startButtonPressed.value = Unit

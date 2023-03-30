@@ -2,15 +2,16 @@ package be.wimbervoets.microwaveoven.controller
 
 import be.wimbervoets.microwaveoven.controller.door.IDoor
 import be.wimbervoets.microwaveoven.controller.heater.IHeater
-import be.wimbervoets.microwaveoven.controller.light.LightBulb
-import be.wimbervoets.microwaveoven.controller.timer.MicrowaveCountDownTimer
+import be.wimbervoets.microwaveoven.controller.light.ILightBulb
+import be.wimbervoets.microwaveoven.controller.timer.ICountDownTimer
 import kotlinx.coroutines.flow.StateFlow
 
-interface IMicrowave: IDoor, IHeater {
+interface IMicrowave: IDoor, IHeater, ILightBulb, ICountDownTimer {
     /*
-     I split the IMicrowave interface in multiple smaller interfaces (IDoor, IHeater)
+     I split the IMicrowave interface in multiple smaller interfaces (IDoor, IHeater; ILightBulb and ICountDownTimer)
      - door and heater can be replaced inside a microwave with another implementation if needed
-     - smaller interface => single responsability => less dependencies/easier to implement/test
+     - light bulb can be LED or TL or ...
+     - smaller interfaces => single responsability => less dependencies/coupling / easier to implement/test
      */
 
     fun pressStartButton()
@@ -19,6 +20,6 @@ interface IMicrowave: IDoor, IHeater {
 
     val door: IDoor
     val heater: IHeater
-    val lightBulb: LightBulb // could also create ILightBulb interface
-    val countDownTimer: MicrowaveCountDownTimer // could also create Interface for countdown timer
+    val lightBulb: ILightBulb
+    val countDownTimer: ICountDownTimer
 }
