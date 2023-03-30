@@ -11,7 +11,7 @@ import be.wimbervoets.microwaveoven.controller.heater.IHeater
 
 @Composable
 fun HeaterUI(heater: IHeater, alignment: Alignment = Alignment.Center) {
-    if (heater.isHeating.collectAsState().value) {
+    if (heater.isHeating.collectAsState(false).value) {
         Image(
             painterResource(id = R.drawable.ic_heat),
             contentDescription = "Heating..",

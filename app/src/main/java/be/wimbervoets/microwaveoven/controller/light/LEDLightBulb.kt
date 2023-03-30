@@ -1,19 +1,22 @@
 package be.wimbervoets.microwaveoven.controller.light
 
-import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.update
 
 class LEDLightBulb: ILightBulb {
     // State of the lightbulb: light on or off
-    private val _lightBulbState = MutableStateFlow(false) // initially the light bulb is off
+    private val _lightBulbState = MutableSharedFlow<Boolean>(1)
     override val lightBulbState: SharedFlow<Boolean> = _lightBulbState
 
+    init {
+        _lightBulbState.tryEmit(false) // initially the light bulb is off
+    }
+
     override fun turnLightOn() {
-        _lightBulbState.update { true }
+        _lightBulbState.tryEmit(true)
     }
 
     override fun turnLightOff() {
-        _lightBulbState.update { false }
+        _lightBulbState.tryEmit(false)
     }
 }

@@ -13,6 +13,7 @@ kotlinx_coroutines = "1.6.4"
 material_components = "1.8.0"
 mockk = "1.13.4"
 timber = "5.0.1"
+turbine = "0.12.3"
 
 [libraries]
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activity" }
@@ -31,6 +32,7 @@ kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-t
 material_components = { module = "com.google.android.material:material", version.ref = "material_components"}
 mockk-android = { module = "io.mockk:mockk-android", version.ref = "mockk" }
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
+turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "android_gradle_plugin" }

@@ -43,7 +43,7 @@ class DFSMicrowave(
     override fun turnOnHeater() = heater.turnOnHeater()
     override fun turnOffHeater() = heater.turnOffHeater()
     override fun isHeating(): Boolean = heater.isHeating()
-    override val isHeating: StateFlow<Boolean> = heater.isHeating
+    override val isHeating: SharedFlow<Boolean> = heater.isHeating
     override val lightBulbState: SharedFlow<Boolean> = lightBulb.lightBulbState
 
     override fun turnLightOn() {

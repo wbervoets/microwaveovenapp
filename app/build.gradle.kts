@@ -66,4 +66,14 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling) // @Preview compose
     implementation(libs.androidx.compose.activity) // setContent { .. } on ComponentActivity
     implementation(libs.androidx.lifecycle.runtime.compose) // Kotlin Flow to Compose State (collectAsStateWithLifecycle)
+
+    // JUnit 5
+    implementation(libs.junit.jupiter.api)
+    testRuntimeOnly(libs.junit.jupiter.engine)
+
+    // TestScope for Kotlin coroutines (Flow)
+    testImplementation(libs.kotlinx.coroutines.test)
+
+    // Testing Flows
+    testImplementation(libs.turbine)
 }

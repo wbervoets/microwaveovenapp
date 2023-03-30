@@ -1,26 +1,28 @@
 package be.wimbervoets.microwaveoven.controller.heater
 
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.flow.*
 import timber.log.Timber
 
-class Heater : IHeater {
+class Heater(private var heating: Boolean = false) : IHeater {
 
-    private val _isHeating = MutableStateFlow(false)
-    override val isHeating: StateFlow<Boolean> = _isHeating
+    private val _isHeating = MutableSharedFlow<Boolean>(replay = 1)
+    override val isHeating: SharedFlow<Boolean> = _isHeating
+
+    init {
+        _isHeating.tryEmit(false) // default value is no heating
+    }
 
     override fun turnOnHeater() {
-        _isHeating.update { true } // with StateFlow we can use update
+        heating = true
+        _isHeating.tryEmit(true)
         Timber.d("Turned on Heater")
     }
 
     override fun turnOffHeater() {
-        _isHeating.update { false }
+        heating = false
+        _isHeating.tryEmit(false)
         Timber.d("Turned off Heater")
     }
 
-    override fun isHeating(): Boolean {
-        return isHeating.value
-    }
+    override fun isHeating(): Boolean = heating
 }
