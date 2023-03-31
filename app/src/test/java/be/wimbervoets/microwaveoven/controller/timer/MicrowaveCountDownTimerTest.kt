@@ -53,7 +53,7 @@ class MicrowaveCountDownTimerTest {
             assertEquals(4, awaitItem())
             assertEquals(3, awaitItem())
 
-            countDownTimer.stopCountDownTimer()
+            countDownTimer.cancelCountDownTimer()
             assertEquals(3, countDownTimer.countDownInSeconds.value)
             countDownTimer.startCountDownTimer()
 

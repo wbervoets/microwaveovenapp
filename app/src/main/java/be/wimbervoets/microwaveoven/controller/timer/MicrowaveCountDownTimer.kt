@@ -24,13 +24,13 @@ class MicrowaveCountDownTimer(
             } else {
                 // last value was 1 and 1 second elapsed again so we emit 0, cancel the timer and call the onfinished callback
                 _countDownInSeconds.tryEmit(0)
-                cancel() // cancel the timer when we went to zero
+                cancelCountDownTimer() // cancel the timer when we went to zero
                 onFinished.invoke()
             }
         }
     }
 
-    override fun stopCountDownTimer() {
+    override fun cancelCountDownTimer() {
         timer?.cancel()
         timer = null
     }

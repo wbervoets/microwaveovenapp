@@ -6,12 +6,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import be.wimbervoets.microwaveoven.MicrowaveViewModel
 import be.wimbervoets.microwaveoven.R
-import be.wimbervoets.microwaveoven.controller.IMicrowave
 
 
 @Composable
-fun MicrowaveUI(microwave: IMicrowave) {
+fun MicrowaveUI(viewModel: MicrowaveViewModel) {
+    val microwave = viewModel.microwave
     Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.SpaceEvenly) {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceEvenly) {
             HeaterUI(heater = microwave.heater)

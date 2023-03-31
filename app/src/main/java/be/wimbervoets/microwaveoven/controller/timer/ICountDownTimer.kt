@@ -5,7 +5,7 @@ import kotlin.time.Duration
 
 interface ICountDownTimer {
     fun startCountDownTimer()
-    fun stopCountDownTimer()
+    fun cancelCountDownTimer()
     fun incrementCountDownTimerDuration(duration: Duration)
     val countDownInSeconds: StateFlow<Int>
 }

@@ -27,7 +27,7 @@ class DFSMicrowave(
         door.openDoor()
         lightBulb.turnLightOn()
         heater.turnOffHeater()
-        countDownTimer.stopCountDownTimer()
+        countDownTimer.cancelCountDownTimer()
     }
 
     override fun closeDoor() {
@@ -58,8 +58,8 @@ class DFSMicrowave(
         countDownTimer.startCountDownTimer()
     }
 
-    override fun stopCountDownTimer() {
-        countDownTimer.stopCountDownTimer()
+    override fun cancelCountDownTimer() {
+        countDownTimer.cancelCountDownTimer()
     }
 
     override fun incrementCountDownTimerDuration(duration: Duration) {
