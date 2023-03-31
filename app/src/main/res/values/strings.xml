@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Microwave Oven App</string>
+    <!-- In a production app all strings should be i18n in multiple languages -->
 </resources>
