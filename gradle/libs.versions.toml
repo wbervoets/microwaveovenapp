@@ -22,6 +22,8 @@ androidx-compose-runtime =  { module = "androidx.compose.runtime:runtime", versi
 androidx-compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "android_compose_material3"}
 androidx-compose-ui = { module = "androidx.compose.ui:ui", version.ref = "android_compose" }
 androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "android_compose" }
+androidx-compose-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "android_compose"}
+androidx-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "android_compose" }
 junit_jupiter_api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit5" }
 junit_jupiter_engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit5" }
 junit_jupiter_params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junit5" }

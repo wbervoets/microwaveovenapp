@@ -73,4 +73,9 @@ dependencies {
 
     // Mocks
     testImplementation(libs.mockk.android)
+
+    // UI Tests
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4) // Test rules and transitive dependencies
+    debugImplementation(libs.androidx.compose.ui.test.manifest) // Needed otherwise ActivityNotFoundException
+
 }
