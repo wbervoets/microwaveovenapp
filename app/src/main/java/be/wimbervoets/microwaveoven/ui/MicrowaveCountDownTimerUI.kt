@@ -20,12 +20,12 @@ fun MicrowaveCountDownTimerUI(timer: ICountDownTimer, modifier: Modifier = Modif
     val state: State<Int> = timer.countDownInSeconds.collectAsState()
     Text(
         text = "${state.value} sec",
-        color = Color.Red,
+        color = MaterialTheme.colorScheme.primary,
         style = MaterialTheme.typography.displayMedium,
         modifier = modifier
             .background(Color.Black)
-            .border(2.dp, Color.Red)
-            .padding(8.dp)
+            .border(2.dp, MaterialTheme.colorScheme.primary)
+            .padding(16.dp)
     )
 }
 
