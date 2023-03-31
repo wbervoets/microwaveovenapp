@@ -1,11 +1,10 @@
-package be.wimbervoets.microwaveoven.ui.door
+package be.wimbervoets.microwaveoven.ui
 
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import be.wimbervoets.microwaveoven.controller.door.Door
-import be.wimbervoets.microwaveoven.ui.DoorUI
 import org.junit.Rule
 import org.junit.Test
 

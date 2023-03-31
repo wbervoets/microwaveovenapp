@@ -1,10 +1,9 @@
-package be.wimbervoets.microwaveoven.ui.heater
+package be.wimbervoets.microwaveoven.ui
 
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import be.wimbervoets.microwaveoven.controller.heater.Heater
-import be.wimbervoets.microwaveoven.ui.HeaterUI
 import org.junit.Rule
 import org.junit.Test
 
