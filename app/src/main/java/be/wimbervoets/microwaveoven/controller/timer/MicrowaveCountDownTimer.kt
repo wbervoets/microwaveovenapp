@@ -17,10 +17,13 @@ class MicrowaveCountDownTimer(
 
     override fun startCountDownTimer() {
         require(timer == null) { "Can only schedule one timer concurrently, call stopCountDownTimer first" }
-        timer = timer("Countdown timer", false, period = 1000) {
-            if (_countDownInSeconds.value > 0) {
+        timer = timer("Countdown timer",  false, period = 1000, initialDelay = 1000) {
+            // count down each second, and wait 1 second before first value is emitted otherwise we start at 59s
+            if (_countDownInSeconds.value > 1) {
                 _countDownInSeconds.tryEmit(_countDownInSeconds.value - 1)
             } else {
+                // last value was 1 and 1 second elapsed again so we emit 0, cancel the timer and call the onfinished callback
+                _countDownInSeconds.tryEmit(0)
                 cancel() // cancel the timer when we went to zero
                 onFinished.invoke()
             }

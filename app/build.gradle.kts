@@ -76,4 +76,7 @@ dependencies {
 
     // Testing Flows
     testImplementation(libs.turbine)
+
+    // Mocks
+    testImplementation(libs.mockk.android)
 }

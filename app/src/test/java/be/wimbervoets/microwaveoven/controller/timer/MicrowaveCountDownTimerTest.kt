@@ -1,6 +1,9 @@
 package be.wimbervoets.microwaveoven.controller.timer
 
 import app.cash.turbine.test
+import io.mockk.every
+import io.mockk.mockk
+import io.mockk.verify
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.*
@@ -62,7 +65,18 @@ class MicrowaveCountDownTimerTest {
     }
 
     @Test
-    fun `when countdown time reaches zero onFinish callback is called`() {
-        // TODO use mock and verify onFinish is called
+    fun `when countdown time reaches zero onFinish callback is called`() = runTest {
+        val onFinishedMock = mockk<() -> Unit>()
+        every { onFinishedMock.invoke() } returns Unit
+
+        val countDownTimer = MicrowaveCountDownTimer(onFinishedMock)
+        countDownTimer.incrementCountDownTimerDuration(1.seconds)
+        countDownTimer.startCountDownTimer()
+
+        countDownTimer.countDownInSeconds.test {
+            assertEquals(1, awaitItem())
+            assertEquals(0, awaitItem())
+            verify(exactly = 1) { onFinishedMock.invoke() }
+        }
     }
 }
