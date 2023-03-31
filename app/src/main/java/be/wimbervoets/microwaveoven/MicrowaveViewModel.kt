@@ -20,6 +20,9 @@ class MicrowaveViewModel: ViewModel() {
     private val lightBulb: ILightBulb = LEDLightBulb()
     val microwave: IMicrowave = DFSMicrowave(door, heater, lightBulb)
 
+    init {
+        Timber.d("Init MicrowaveViewModel")
+    }
 
     override fun onCleared() {
         super.onCleared()

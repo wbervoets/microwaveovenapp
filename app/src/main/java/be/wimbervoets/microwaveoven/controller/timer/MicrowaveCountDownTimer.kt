@@ -2,6 +2,7 @@ package be.wimbervoets.microwaveoven.controller.timer
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 import java.util.*
 import kotlin.concurrent.timer
 import kotlin.time.Duration
@@ -20,10 +21,11 @@ class MicrowaveCountDownTimer(
         timer = timer("Countdown timer",  false, period = 1000, initialDelay = 1000) {
             // count down each second, and wait 1 second before first value is emitted otherwise we start at 59s
             if (_countDownInSeconds.value > 1) {
-                _countDownInSeconds.tryEmit(_countDownInSeconds.value - 1)
+                _countDownInSeconds.update { _countDownInSeconds.value - 1 }
             } else {
                 // last value was 1 and 1 second elapsed again so we emit 0, cancel the timer and call the onfinished callback
-                _countDownInSeconds.tryEmit(0)
+                _countDownInSeconds.update { 0 }
+
                 cancelCountDownTimer() // cancel the timer when we went to zero
                 onFinished.invoke()
             }
@@ -36,7 +38,9 @@ class MicrowaveCountDownTimer(
     }
 
     override fun incrementCountDownTimerDuration(duration: Duration) {
-        _countDownInSeconds.value = (_countDownInSeconds.value + duration.inWholeSeconds).toInt()
+        _countDownInSeconds.update {
+            (_countDownInSeconds.value + duration.inWholeSeconds).toInt()
+        }
     }
 
 }

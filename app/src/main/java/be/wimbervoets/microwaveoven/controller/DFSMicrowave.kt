@@ -5,7 +5,7 @@ import be.wimbervoets.microwaveoven.controller.door.IDoor
 import be.wimbervoets.microwaveoven.controller.heater.IHeater
 import be.wimbervoets.microwaveoven.controller.light.ILightBulb
 import be.wimbervoets.microwaveoven.controller.timer.MicrowaveCountDownTimer
-import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import timber.log.Timber
@@ -69,7 +69,7 @@ class DFSMicrowave(
     override val countDownInSeconds: StateFlow<Int> = countDownTimer.countDownInSeconds
 
     override fun pressStartButton() {
-        _startButtonPressed.value = Unit
+        _startButtonPressed.tryEmit(Unit)
 
         if (!isDoorOpen()) {
             if (heater.isHeating()) {
@@ -85,8 +85,7 @@ class DFSMicrowave(
         }
     }
 
-    // TODO: Why startButtonPressed: StateFlow<Unit> is needed?
-    private val _startButtonPressed = MutableStateFlow(Unit)
-    override val startButtonPressed: StateFlow<Unit> = _startButtonPressed
+    private val _startButtonPressed = MutableSharedFlow<Unit>(replay = 1)
+    override val startButtonPressed: SharedFlow<Unit> = _startButtonPressed
 
 }

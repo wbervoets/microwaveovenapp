@@ -98,4 +98,12 @@ class DFSMicrowaveTest {
             assertFalse(microwave.isHeating())
         }
     }
+
+    @Test
+    fun `when start button was pressed startButtonPressed flow item is received`() = runTest {
+        microwave.pressStartButton() // replay = 1, so this will be collected if the receiver registers later
+        microwave.startButtonPressed.test {
+            assertEquals(Unit, awaitItem())
+        }
+    }
 }

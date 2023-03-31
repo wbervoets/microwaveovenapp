@@ -4,7 +4,7 @@ import be.wimbervoets.microwaveoven.controller.door.IDoor
 import be.wimbervoets.microwaveoven.controller.heater.IHeater
 import be.wimbervoets.microwaveoven.controller.light.ILightBulb
 import be.wimbervoets.microwaveoven.controller.timer.ICountDownTimer
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.SharedFlow
 
 interface IMicrowave: IDoor, IHeater, ILightBulb, ICountDownTimer {
     /*
@@ -15,7 +15,7 @@ interface IMicrowave: IDoor, IHeater, ILightBulb, ICountDownTimer {
      */
 
     fun pressStartButton()
-    val startButtonPressed: StateFlow<Unit> // emits value each time start button is pressed
+    val startButtonPressed: SharedFlow<Unit> // emits value each time start button is pressed
 
 
     val door: IDoor
