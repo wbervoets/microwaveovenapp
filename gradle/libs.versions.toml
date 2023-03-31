@@ -6,7 +6,6 @@ android_compose_compiler = "1.4.4"
 android_compose = "1.4.0"
 android_compose_material3 = "1.0.1"
 android_lifecycle_compose_runtime = "2.6.1"
-dagger = "2.45"
 junit5 = "5.8.2"
 kotlin = "1.8.10"
 kotlinx_coroutines = "1.6.4"
@@ -23,8 +22,6 @@ androidx-compose-runtime =  { module = "androidx.compose.runtime:runtime", versi
 androidx-compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "android_compose_material3"}
 androidx-compose-ui = { module = "androidx.compose.ui:ui", version.ref = "android_compose" }
 androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "android_compose" }
-dagger-hilt = { module = "com.google.dagger:hilt-android", version.ref = "dagger" }
-dagger_hilt_compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "dagger" }
 junit_jupiter_api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit5" }
 junit_jupiter_engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit5" }
 junit_jupiter_params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junit5" }
@@ -40,6 +37,5 @@ android-library = { id = "com.android.library", version.ref = "android_gradle_pl
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
-dagger-hilt = { id = "com.google.dagger.hilt.android", version.ref = "dagger" }
 android-junit5 = { id = "de.mannodermaus.android-junit5", version.ref = "android_junit5" }
 

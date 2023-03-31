@@ -3,8 +3,6 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.kapt)
-    alias(libs.plugins.dagger.hilt)
     alias(libs.plugins.android.junit5)
 }
 
@@ -55,10 +53,6 @@ android {
 dependencies {
     implementation(libs.androidx.activity.ktx)
     implementation(libs.timber)
-
-    // TODO remove Dagger because not needed
-    implementation(libs.dagger.hilt)
-    kapt(libs.dagger.hilt.compiler)
 
     implementation(libs.androidx.compose.runtime)
     implementation(libs.androidx.compose.ui) // Text, ...
