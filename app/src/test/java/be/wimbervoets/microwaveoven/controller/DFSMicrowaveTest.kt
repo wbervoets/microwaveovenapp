@@ -90,7 +90,7 @@ class DFSMicrowaveTest {
 
     @Test
     @Disabled("Takes 1 minute to complete because the timer we use is using real wall time clock")
-    fun `when the time reaches zero the heater is turned off`() = runTest {
+    fun `when the timer reaches zero the heater is turned off`() = runTest {
         microwave.pressStartButton()
         microwave.countDownTimer.countDownInSeconds.test {
             skipItems(60)
