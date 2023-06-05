@@ -1,6 +1,6 @@
 [versions]
 activity = "1.7.0"
-android_gradle_plugin = "7.4.2"
+android_gradle_plugin = "8.0.2"
 android_junit5 = "1.8.2.1"
 android_compose_compiler = "1.4.4"
 android_compose = "1.4.0"
